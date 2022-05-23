@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Empleado } from '../models/empleado';
+import { Empleado } from '../models/Empleado'; 
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +24,25 @@ export class EmpleadoService {
     return this.listEmpleado.slice();
   }
 
+  getEmpleado(index: number) {
+    return this.listEmpleado[index];
+  }
+
   eliminarEmpleado(index: number){
     this.listEmpleado.splice(index, 1);
+  }
+
+  agregarEmpleado(empleado: Empleado) {
+    this.listEmpleado.unshift(empleado);
+  }
+
+  editEmpleado(empleado: Empleado, idEmpleado: number){
+    this.listEmpleado[idEmpleado].nombreCompleto = empleado.nombreCompleto;
+    this.listEmpleado[idEmpleado].correo = empleado.correo;
+    this.listEmpleado[idEmpleado].fechaIngreso = empleado.fechaIngreso;
+    this.listEmpleado[idEmpleado].telefono = empleado.telefono;
+    this.listEmpleado[idEmpleado].sexo = empleado.sexo;
+    this.listEmpleado[idEmpleado].estadoCivil = empleado.estadoCivil;
   }
 
 }
